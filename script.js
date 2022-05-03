@@ -19,36 +19,33 @@ let userScore = 0;
 const playRound = (playerSelection, computerSelection) => {
     playerSelection = playerSelection.toLowerCase(); //turns playerselection into lowercase
     if (playerSelection == computerSelection) {
-        return 'The game is a tie!';
+        console.log('The game is a tie!');
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
         computerScore +=1;
-        return 'The computer won! Paper beats rock.';
+        console.log('The computer won! Paper beats rock.');
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
         userScore +=1;
-        return 'You won! Rock beats scissors.'
+        console.log('You won! Rock beats scissors.');
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
         userScore +=1;
-        return 'You won! Paper beats rock.'
+        console.log('You won! Paper beats rock.');
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
         computerScore +=1;
-        return 'The computer won! Scissors beats paper.'
+        console.log('The computer won! Scissors beats paper.');
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         computerScore +=1;
-        return 'The computer won! Rock beats scissors'
+        console.log('The computer won! Rock beats scissors');
     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
         userScore +=1;
-        return 'You won! Scissors beats paper.'
+        console.log('You won! Scissors beats paper.');
     }
 }
 
 
 const game = () => {
-    //loop through 5 rounds
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('rock, paper, or scissors?', 'rock'); //pop up window to get playerselection
-        const computerSelection = computerPlay() //runs random choice generating function
-        console.log(playRound(playerSelection, computerSelection)); //logs results of round
-    }
+    const playerSelection = prompt('rock, paper, or scissors?', 'rock'); //pop up window to get playerselection
+    const computerSelection = computerPlay() //runs random choice generating function
+    console.log(playRound(playerSelection, computerSelection)); //logs results of round
     //determine result of game
     if (userScore > computerScore) {
         console.log(`You won! The score is user: ${userScore}, computer: ${computerScore}`);
@@ -58,4 +55,12 @@ const game = () => {
         console.log(`The game is a Tie! The score is user: ${userScore}, computer: ${computerScore}`)
     }
 }
-game(); //run game function
+//game(); //run game function
+
+const rock = document.querySelector('#rockBtn');
+const paper = document.querySelector('#paperBtn');
+const scissors = document.querySelector('#scissorsBtn');
+
+rock.addEventListener('click', function () {playRound('rock', computerPlay())});
+paper.addEventListener('click', function () {playRound('paper', computerPlay())});
+scissors.addEventListener('click', function () {playRound('scissors', computerPlay())});
