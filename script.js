@@ -19,26 +19,28 @@ let userScore = 0;
 const playRound = (playerSelection, computerSelection) => {
     playerSelection = playerSelection.toLowerCase(); //turns playerselection into lowercase
     if (playerSelection == computerSelection) {
-        console.log('The game is a tie!');
+        results.textContent = 'The game is a tie!';
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
         computerScore +=1;
-        console.log('The computer won! Paper beats rock.');
+        results.textContent = 'The computer won! Paper beats rock.';
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
         userScore +=1;
-        console.log('You won! Rock beats scissors.');
+        results.textContent = 'You won! Rock beats scissors.';
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
         userScore +=1;
-        console.log('You won! Paper beats rock.');
+        results.textContent = 'You won! Paper beats rock.';
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
         computerScore +=1;
-        console.log('The computer won! Scissors beats paper.');
+        results.textContent = 'The computer won! Scissors beats paper.';
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         computerScore +=1;
-        console.log('The computer won! Rock beats scissors');
+        results.textContent = 'The computer won! Rock beats scissors';
     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
         userScore +=1;
-        console.log('You won! Scissors beats paper.');
+        results.textContent = 'You won! Scissors beats paper.';
     }
+    compScoreDisp.innerHTML = computerScore;
+    userScoreDisp.innerHTML = userScore;
 }
 
 
@@ -60,7 +62,14 @@ const game = () => {
 const rock = document.querySelector('#rockBtn');
 const paper = document.querySelector('#paperBtn');
 const scissors = document.querySelector('#scissorsBtn');
+const results = document.querySelector('#results');
+const compScoreDisp = document.querySelector('#comp-score');
+const userScoreDisp = document.querySelector('#user-score');
+
+
 
 rock.addEventListener('click', function () {playRound('rock', computerPlay())});
 paper.addEventListener('click', function () {playRound('paper', computerPlay())});
 scissors.addEventListener('click', function () {playRound('scissors', computerPlay())});
+
+
