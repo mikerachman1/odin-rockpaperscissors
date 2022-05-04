@@ -39,25 +39,22 @@ const playRound = (playerSelection, computerSelection) => {
         userScore +=1;
         results.textContent = 'You won! Scissors beats paper.';
     }
-    compScoreDisp.innerHTML = computerScore;
-    userScoreDisp.innerHTML = userScore;
-}
-
-
-const game = () => {
-    const playerSelection = prompt('rock, paper, or scissors?', 'rock'); //pop up window to get playerselection
-    const computerSelection = computerPlay() //runs random choice generating function
-    console.log(playRound(playerSelection, computerSelection)); //logs results of round
-    //determine result of game
-    if (userScore > computerScore) {
-        console.log(`You won! The score is user: ${userScore}, computer: ${computerScore}`);
-    } else if (userScore < computerScore) {
-        console.log(`The computer won! The score is user: ${userScore}, computer: ${computerScore}`)
-    } else if (userScore == computerScore) {
-        console.log(`The game is a Tie! The score is user: ${userScore}, computer: ${computerScore}`)
+    compScoreDisp.innerHTML = `Computer score: ${computerScore}`;
+    userScoreDisp.innerHTML = `User Score: ${userScore}`;
+    compChoice.innerHTML = `Computer choice: ${computerSelection}`;
+    userChoice.innerHTML = `User choice: ${playerSelection}`;
+    if (userScore === 5) {
+        if(alert('You won!')){}
+        else window.location.reload();
+    } else if (computerScore === 5) {
+        if(alert('Computer won!')){}
+        else window.location.reload();
     }
 }
-//game(); //run game function
+
+
+
+
 
 const rock = document.querySelector('#rockBtn');
 const paper = document.querySelector('#paperBtn');
@@ -65,11 +62,11 @@ const scissors = document.querySelector('#scissorsBtn');
 const results = document.querySelector('#results');
 const compScoreDisp = document.querySelector('#comp-score');
 const userScoreDisp = document.querySelector('#user-score');
+const userChoice = document.querySelector('#user-choice');
+const compChoice = document.querySelector('#comp-choice');
 
 
 
 rock.addEventListener('click', function () {playRound('rock', computerPlay())});
 paper.addEventListener('click', function () {playRound('paper', computerPlay())});
 scissors.addEventListener('click', function () {playRound('scissors', computerPlay())});
-
-
